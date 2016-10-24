@@ -8,27 +8,37 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
+    <TextView
+        android:id="@+id/lang_fragment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Languages"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
     <Button
-        android:id="@+id/openfile_button"
+        android:id="@+id/lang_fragment_openfile_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Open file from Google Drive"
-        android:onClick="onClickOpenFileMethod"/>
+        android:onClick="onClickOpenFileMethod"
+        android:layout_below="@+id/lang_fragment_title"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/language_rv"
+        android:id="@+id/lang_fragment_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/openfile_button"
-        android:layout_above="@+id/set_firebase_button">
+        android:layout_below="@+id/lang_fragment_openfile_button"
+        android:layout_above="@+id/lang_fragment_import_firebase_button">
 
     </android.support.v7.widget.RecyclerView>
 
     <Button
-        android:id="@+id/set_firebase_button"
+        android:id="@+id/lang_fragment_import_firebase_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add to Firebase"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

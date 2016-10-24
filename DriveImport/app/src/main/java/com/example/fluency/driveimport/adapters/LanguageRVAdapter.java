@@ -1,4 +1,4 @@
-package com.example.fluency.driveimport;
+package com.example.fluency.driveimport.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.fluency.driveimport.R;
 import com.example.fluency.driveimport.models.Country;
 import com.example.fluency.driveimport.models.Language;
 

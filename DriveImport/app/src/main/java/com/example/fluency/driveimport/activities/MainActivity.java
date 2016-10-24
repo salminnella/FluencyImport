@@ -1,4 +1,4 @@
-package com.example.fluency.driveimport;
+package com.example.fluency.driveimport.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,11 +11,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.fluency.driveimport.R;
+import com.example.fluency.driveimport.adapters.ViewPagerAdapter;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private ViewPager viewPager;
-    private ImportAdapter importAdapter;
+    private ViewPagerAdapter importAdapter;
     private TabLayout tabLayout;
     private FloatingActionButton fab;
 
@@ -27,7 +30,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        initViewPager();
+
         initFab();
+    }
+
+    private void initViewPager() {
+        viewPager = (ViewPager) findViewById(R.id.import_view_pager);
+        setupPagerFragments();
+    }
+
+    private void setupPagerFragments() {
+
     }
 
     private void initFab() {
