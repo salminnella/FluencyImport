@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <Button
+        android:id="@+id/openfile_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open file from Google Drive"
+        android:onClick="onClickOpenFileMethod"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/language_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/openfile_button"
+        android:layout_above="@+id/set_firebase_button">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/set_firebase_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add to Firebase"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
