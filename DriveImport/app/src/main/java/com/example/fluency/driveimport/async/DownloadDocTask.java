@@ -17,7 +17,7 @@ import java.net.URL;
  * Created by anthony on 9/2/16.
  */
 public class DownloadDocTask extends AsyncTask<String, Void, String> {
-    private static final String TAG = "DownloadDocTask";
+    private static final String TAG_DOWNLOAD_TASK = "DownloadDocTask";
     AsyncResult callBack;
 
     public DownloadDocTask (AsyncResult callBack) {
@@ -48,10 +48,6 @@ public class DownloadDocTask extends AsyncTask<String, Void, String> {
         }
     }
 
-
-
-
-
     private String downloadUrl(String urlString) throws IOException {
         InputStream is = null;
 
@@ -68,7 +64,7 @@ public class DownloadDocTask extends AsyncTask<String, Void, String> {
             is = conn.getInputStream();
 
             String contentAsString = convertStreamToString(is);
-            Log.i(TAG, "downloadUrl: content = " + contentAsString);
+            Log.i(TAG_DOWNLOAD_TASK, "downloadUrl: content = " + contentAsString);
             return contentAsString;
         } finally {
             if (is != null) {
@@ -95,7 +91,7 @@ public class DownloadDocTask extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
         }
-        Log.i(TAG, "convertStreamToString: " + sb.toString());
+        Log.i(TAG_DOWNLOAD_TASK, "convertStreamToString: " + sb.toString());
         return sb.toString();
     }
 }
