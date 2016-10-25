@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private FloatingActionButton fabDrive;
     private FloatingActionButton fabFirebase;
+    private int selectedTab;
 
 
     @Override
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
                     viewPager.setCurrentItem(tab.getPosition());
+                    selectedTab = tab.getPosition();
                 }
 
                 @Override
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         fabDrive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Selected Tab = " + selectedTab, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
