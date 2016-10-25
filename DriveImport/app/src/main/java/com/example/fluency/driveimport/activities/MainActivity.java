@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements
             public void onClick(View view) {
 //                Snackbar.make(view, "Selected Tab = " + selectedTab, Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-
+                Log.d(TAG_MAIN_ACTIVITY, "onClick: googleClient = " + googleApiClient);
                 googleApiClient.connect();
             }
         });
