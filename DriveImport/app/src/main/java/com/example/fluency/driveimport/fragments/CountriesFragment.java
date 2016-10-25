@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.fluency.driveimport.R;
 
@@ -18,8 +17,8 @@ import com.example.fluency.driveimport.R;
 public class CountriesFragment extends Fragment {
     private static final String TAG_COUNTRIES_FRAGMENT = "CountriesFragment";
 
-    private Button countiresOpenFileButton;
-    private Button countriesImportFbButton;
+//    private Button countiresOpenFileButton;
+//    private Button countriesImportFbButton;
     private RecyclerView countriesRecycerView;
 
 
@@ -38,8 +37,8 @@ public class CountriesFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        countiresOpenFileButton = (Button) view.findViewById(R.id.countries_fragment_openfile_button);
-        countriesImportFbButton = (Button) view.findViewById(R.id.countries_fragment_import_firebase_button);
+//        countiresOpenFileButton = (Button) view.findViewById(R.id.countries_fragment_openfile_button);
+//        countriesImportFbButton = (Button) view.findViewById(R.id.countries_fragment_import_firebase_button);
         countriesRecycerView = (RecyclerView) view.findViewById(R.id.countries_fragment_rv);
     }
 }
