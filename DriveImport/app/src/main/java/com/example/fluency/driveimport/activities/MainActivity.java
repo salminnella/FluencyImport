@@ -7,20 +7,24 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.fluency.driveimport.R;
 import com.example.fluency.driveimport.adapters.ViewPagerAdapter;
+import com.example.fluency.driveimport.fragments.CountriesFragment;
+import com.example.fluency.driveimport.fragments.LanguagesFragment;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    public static final String KEY_START_TAB = "keyStartTab";
 
     private ViewPager viewPager;
-    private ViewPagerAdapter importAdapter;
+    private ViewPagerAdapter viewPagerAdapter;
     private TabLayout tabLayout;
-    private FloatingActionButton fab;
+    private FloatingActionButton fabDrive;
+    private FloatingActionButton fabFirebase;
 
 
     @Override
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         initViewPager();
 
-        initFab();
+        initFabs();
     }
 
     private void initViewPager() {
@@ -41,16 +45,67 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupPagerFragments() {
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        LanguagesFragment langFragment = new LanguagesFragment();
+        CountriesFragment countriesFragment = new CountriesFragment();
+        viewPagerAdapter.addFragment(langFragment, "Languages");
+        viewPagerAdapter.addFragment(countriesFragment, "Countries");
+
+        viewPager.setAdapter(viewPagerAdapter);
+
+        initTabLayout();
+    }
+
+    public void initTabLayout(){
+        tabLayout = (TabLayout) findViewById(R.id.import_tab);
+
+        if (tabLayout != null) {
+            tabLayout.setupWithViewPager(viewPager);
+            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+            tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    viewPager.setCurrentItem(tab.getPosition());
+                }
+
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+
+                }
+            });
+            setStartingTab();
+        }
 
     }
 
-    private void initFab() {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+    private void setStartingTab(){
+        if(getIntent().getIntExtra(KEY_START_TAB,-1) != -1){
+            tabLayout.getTabAt(getIntent().getIntExtra(KEY_START_TAB,-1)).select();
+        }
+    }
+
+
+    private void initFabs() {
+        fabDrive = (FloatingActionButton) findViewById(R.id.fabOpenDriveFile);
+        fabDrive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        fabFirebase = (FloatingActionButton) findViewById(R.id.fabImportFirebase);
+        fabFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }
