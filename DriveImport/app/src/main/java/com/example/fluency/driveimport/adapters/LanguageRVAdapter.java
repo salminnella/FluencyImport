@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.fluency.driveimport.R;
-import com.example.fluency.driveimport.models.Country;
+import com.example.fluency.driveimport.models.LanguageCountry;
 import com.example.fluency.driveimport.models.Language;
 
 import java.util.List;
@@ -61,13 +61,13 @@ public class LanguageRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 //        langViewHolder.langPhone.setText(language.getPhone());
         langViewHolder.langLcode.setText(String.valueOf(language.getlCode()));
         StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < languageList.get(i).getCountry().size(); i++)
+//        for (int i = 0; i < languageList.get(i).getLanguageCountry().size(); i++)
 //        {
-//            sb.append(languageList.get(i).getCountry());
+//            sb.append(languageList.get(i).getLanguageCountry());
 //            sb.append("\t");
 //        }
-        for (Country country : languageList.get(position).getCountry()) {
-            sb.append(country.getCountryName());
+        for (LanguageCountry languageCountry : languageList.get(position).getLanguageCountry()) {
+            sb.append(languageCountry.getCountryName());
             sb.append("\n");
         }
         langViewHolder.langCountries.setText(sb);

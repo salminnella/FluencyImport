@@ -3,12 +3,21 @@ package com.example.fluency.driveimport.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fluency.driveimport.R;
+import com.example.fluency.driveimport.adapters.CountriesRvAdapter;
+import com.example.fluency.driveimport.models.AllCountries;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by anthony on 10/24/16.
@@ -17,8 +26,6 @@ import com.example.fluency.driveimport.R;
 public class CountriesFragment extends Fragment {
     private static final String TAG_COUNTRIES_FRAGMENT = "CountriesFragment";
 
-//    private Button countiresOpenFileButton;
-//    private Button countriesImportFbButton;
     private RecyclerView countriesRecycerView;
 
 
@@ -37,8 +44,37 @@ public class CountriesFragment extends Fragment {
     }
 
     private void initViews(View view) {
-//        countiresOpenFileButton = (Button) view.findViewById(R.id.countries_fragment_openfile_button);
-//        countriesImportFbButton = (Button) view.findViewById(R.id.countries_fragment_import_firebase_button);
         countriesRecycerView = (RecyclerView) view.findViewById(R.id.countries_fragment_rv);
+    }
+
+    public void populateCountriesRecyclerView(JSONObject objectTable) {
+        ArrayList<AllCountries> countriesArrayList = new ArrayList<>();
+
+        try {
+            JSONArray rows = objectTable.getJSONArray("rows");
+
+            for (int r = 0; r < rows.length(); r++) {
+                JSONObject row = rows.getJSONObject(r);
+                JSONArray column = row.getJSONArray("c");
+
+                String countryName = column.getJSONObject(0).getString("v");
+                String countryCode = column.getJSONObject(2).getString("v");
+
+                Log.d(TAG_COUNTRIES_FRAGMENT, "NAME = " + countryName);
+                Log.d(TAG_COUNTRIES_FRAGMENT, "CODE = " + countryCode);
+
+                countriesArrayList.add(new AllCountries(countryName, countryCode));
+            }
+
+            CountriesRvAdapter countriesRvAdapter = new CountriesRvAdapter(countriesArrayList);
+            countriesRecycerView.setAdapter(countriesRvAdapter);
+            LinearLayoutManager lManager = new LinearLayoutManager(getActivity());
+            countriesRecycerView.setLayoutManager(lManager);
+            countriesRecycerView.hasFixedSize();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

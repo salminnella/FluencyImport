@@ -11,7 +11,7 @@ public class Language {
     private String ISO;
     private int lCode;
     private int routing;
-    private ArrayList<Country> country;
+    private ArrayList<LanguageCountry> languageCountry;
 
     public Language() {
     }
@@ -23,7 +23,7 @@ public class Language {
         this.lCode = lCode;
         this.routing = routing;
 
-        setCountry(countryArray);
+        setLanguageCountry(countryArray);
     }
 
     public String getName() {
@@ -66,14 +66,14 @@ public class Language {
         this.routing = routing;
     }
 
-    public ArrayList<Country> getCountry() {
-        return country;
+    public ArrayList<LanguageCountry> getLanguageCountry() {
+        return languageCountry;
     }
 
-    public void setCountry(String[] countryArray) {
-        country = new ArrayList<>();
+    public void setLanguageCountry(String[] countryArray) {
+        languageCountry = new ArrayList<>();
         for (String countryName : countryArray) {
-            country.add(new Country(countryName));
+            languageCountry.add(new LanguageCountry(countryName));
         }
     }
 }

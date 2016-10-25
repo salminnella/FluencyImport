@@ -12,6 +12,11 @@ public class AllCountries {
 
     }
 
+    public AllCountries(String countryName, String countryCode) {
+        this.countryName = countryName;
+        this.countryCode = countryCode;
+    }
+
     public String getCountryName() {
         return countryName;
     }

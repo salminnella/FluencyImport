@@ -3,13 +3,13 @@ package com.example.fluency.driveimport.models;
 /**
  * Created by anthony on 9/2/16.
  */
-public class Country {
+public class LanguageCountry {
     private String countryName;
 
-    public Country() {
+    public LanguageCountry() {
     }
 
-    public Country(String countryName) {
+    public LanguageCountry(String countryName) {
         this.countryName = countryName;
     }
 

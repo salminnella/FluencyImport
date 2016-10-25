@@ -25,15 +25,7 @@ import java.util.ArrayList;
 
 public class LanguagesFragment extends Fragment {
     private static final String TAG_LANGUAGES_FRAGMENT = "LanguagesFragment";
-    private static final int REQUEST_CODE_SELECT = 102;
-    private static final int REQUEST_CODE_RESOLUTION = 103;
-
-//    private Button langOpenFileButton;
-//    private Button langImportFbButton;
     private RecyclerView langRecyclerView;
-    private ArrayList<Language> languageArrayList;
-    private LanguageRVAdapter languageRVAdapter;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,33 +42,27 @@ public class LanguagesFragment extends Fragment {
         return view;
     }
 
-
-
-
     private void initViews(View view) {
-//        langOpenFileButton = (Button) view.findViewById(R.id.lang_fragment_openfile_button);
-//        langImportFbButton = (Button) view.findViewById(R.id.lang_fragment_import_firebase_button);
         langRecyclerView = (RecyclerView) view.findViewById(R.id.lang_fragment_rv);
     }
 
     public void populateLanguageRecyclerView(JSONObject objectTable) {
-        languageArrayList = new ArrayList<>();
+        ArrayList<Language> languageArrayList = new ArrayList<>();
         try {
             JSONArray rows = objectTable.getJSONArray("rows");
 
             for (int r = 0; r < rows.length(); ++r) {
-
                 JSONObject row = rows.getJSONObject(r);
                 JSONArray columns = row.getJSONArray("c");
 
                 String language = columns.getJSONObject(0).getString("v");
                 String ISO = columns.getJSONObject(1).getString("v");
-                String vendor = columns.getJSONObject(2).getString("v");
                 String phone = columns.getJSONObject(3).getString("v");
                 int routing = columns.getJSONObject(4).getInt("v");
                 int lCode = columns.getJSONObject(5).getInt("v");
-                String[] countriesArray;
+
                 //get the countries colum
+                String[] countriesArray;
                 String countriesStr = columns.getJSONObject(8).getString("v");
                 Log.i(TAG_LANGUAGES_FRAGMENT, "processJson: countriesStr = " + countriesStr);
                 countriesArray = countriesStr.split("-");
@@ -100,7 +86,7 @@ public class LanguagesFragment extends Fragment {
 
             }
 
-            languageRVAdapter = new LanguageRVAdapter(languageArrayList);
+            LanguageRVAdapter languageRVAdapter = new LanguageRVAdapter(languageArrayList);
             langRecyclerView.setAdapter(languageRVAdapter);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             langRecyclerView.setLayoutManager(layoutManager);
@@ -110,9 +96,4 @@ public class LanguagesFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
-
-
-
-
 }

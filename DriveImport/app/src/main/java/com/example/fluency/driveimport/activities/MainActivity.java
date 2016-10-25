@@ -264,7 +264,6 @@ public class MainActivity extends AppCompatActivity implements
                             processJson(object);
                         }
                     }).execute("https://spreadsheets.google.com/tq?key=" + mFileId.getResourceId());
-
                 }
 
                 break;
@@ -282,16 +281,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void processJson(JSONObject object) {
-
         Log.i(TAG_MAIN_ACTIVITY, "processJson: " + object);
         if (selectedTab == 0) {
             langFragment.populateLanguageRecyclerView(object);
         } else {
-
+            countriesFragment.populateCountriesRecyclerView(object);
         }
-
-
     }
-
-
 }
