@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/country_rv_name"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Country"
         android:layout_weight="1"
