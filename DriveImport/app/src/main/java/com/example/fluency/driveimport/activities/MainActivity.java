@@ -287,5 +287,8 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             countriesFragment.populateCountriesRecyclerView(object);
         }
+        if (googleApiClient != null) {
+            googleApiClient.disconnect();
+        }
     }
 }
