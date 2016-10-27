@@ -52,8 +52,8 @@ public class CountriesRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         CountriesViewHolder countriesViewHolder = (CountriesViewHolder) holder;
 
-        countriesViewHolder.countryName.setText(country.getCountryName());
-        countriesViewHolder.countryCode.setText(country.getCountryCode());
+        countriesViewHolder.countryName.setText(country.getCountryPhoneName());
+        countriesViewHolder.countryCode.setText(country.getCountryPhoneCode());
     }
 
     @Override

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.fluency.driveimport.R;
 import com.example.fluency.driveimport.adapters.LanguageRVAdapter;
 import com.example.fluency.driveimport.models.Language;
+import com.firebase.client.Firebase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,7 +26,13 @@ import java.util.ArrayList;
 
 public class LanguagesFragment extends Fragment {
     private static final String TAG_LANGUAGES_FRAGMENT = "LanguagesFragment";
+    private static final String FIREBASE_ROOT_URL = "https://project-5176964787746948725.firebaseio.com/";
+    private static final String FIREBASE_ROOT_CHILD_LANGUAGES = "SingleLanguageList";
+
     private RecyclerView langRecyclerView;
+    private ArrayList<Language> languageArrayList;
+    private Firebase firebaseRoot;
+    private Firebase firebaseLanguagesRef;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +54,12 @@ public class LanguagesFragment extends Fragment {
     }
 
     public void populateLanguageRecyclerView(JSONObject objectTable) {
-        ArrayList<Language> languageArrayList = new ArrayList<>();
+        languageArrayList = new ArrayList<>();
+        String language;
+        String ISO;
+        String phone;
+        int routing;
+        int lCode;
         try {
             JSONArray rows = objectTable.getJSONArray("rows");
 
@@ -55,34 +67,37 @@ public class LanguagesFragment extends Fragment {
                 JSONObject row = rows.getJSONObject(r);
                 JSONArray columns = row.getJSONArray("c");
 
-                String language = columns.getJSONObject(0).getString("v");
-                String ISO = columns.getJSONObject(1).getString("v");
-                String phone = columns.getJSONObject(3).getString("v");
-                int routing = columns.getJSONObject(4).getInt("v");
-                int lCode = columns.getJSONObject(5).getInt("v");
+
+                language = columns.getJSONObject(0).getString("v");
+                if (columns.get(1).toString().equals("null")) {
+                    ISO = "0";
+                } else {
+                    ISO = columns.getJSONObject(1).getString("v");
+                }
+                if (columns.get(3).toString().equals("null")) {
+                    phone = "0";
+                } else {
+                    phone = columns.getJSONObject(3).getString("v");
+                }
+                if (columns.get(4).toString().equals("null")) {
+                    routing = 0;
+                } else {
+                    routing = columns.getJSONObject(4).getInt("v");
+                }
+                if (columns.get(5).toString().equals("null")) {
+                    lCode = 0;
+                } else {
+                    lCode = columns.getJSONObject(5).getInt("v");
+                }
 
                 //get the countries colum
                 String[] countriesArray;
                 String countriesStr = columns.getJSONObject(8).getString("v");
-                Log.i(TAG_LANGUAGES_FRAGMENT, "processJson: countriesStr = " + countriesStr);
+                Log.d(TAG_LANGUAGES_FRAGMENT, "processJson: countriesStr = " + countriesStr);
                 countriesArray = countriesStr.split("-");
-//                if (countriesStr != null) {
-                // trim the countries: label in the cell
-                //Log.i(TAG, "processJson: countriesStr = " + countriesStr);
-                //String countriesTrimmed = countriesStr.substring(11, countriesStr.length());
-                //Log.i(TAG, "processJson: trimmed = " + countriesTrimmed);
-                // split the countries by - into string array
-                //countriesArray = countriesTrimmed.split("-");
-//                }
 
 
                 languageArrayList.add(new Language(language,phone,ISO,lCode,routing,countriesArray));
-//                Log.i(TAG, "processJson: language " + language);
-//                Log.i(TAG, "processJson: iso " + ISO);
-//                Log.i(TAG, "processJson: vendor " + vendor);
-//                Log.i(TAG, "processJson: phone " + phone);
-//                Log.i(TAG, "processJson: routing " + routing);
-//                Log.i(TAG, "processJson: lCode " + lCode);
 
             }
 
@@ -94,6 +109,17 @@ public class LanguagesFragment extends Fragment {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addLanguagesToFirebase() {
+        Firebase.setAndroidContext(getContext());
+        firebaseRoot = new Firebase(FIREBASE_ROOT_URL);
+        firebaseLanguagesRef = firebaseRoot.child(FIREBASE_ROOT_CHILD_LANGUAGES);
+
+        for (int i = 0; i < languageArrayList.size(); i++) {
+            firebaseLanguagesRef.child(languageArrayList.get(i).getName()).setValue(languageArrayList.get(i));
+            Log.d(TAG_LANGUAGES_FRAGMENT, "setValueToFirebase: name" + languageArrayList.get(i).getName());
         }
     }
 }
