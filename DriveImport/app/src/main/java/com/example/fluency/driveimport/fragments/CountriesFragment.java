@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.fluency.driveimport.R;
 import com.example.fluency.driveimport.adapters.CountriesRvAdapter;
 import com.example.fluency.driveimport.models.AllCountries;
+import com.firebase.client.Firebase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,9 +26,13 @@ import java.util.ArrayList;
 
 public class CountriesFragment extends Fragment {
     private static final String TAG_COUNTRIES_FRAGMENT = "CountriesFragment";
+    private static final String FIREBASE_ROOT_URL = "https://project-5176964787746948725.firebaseio.com/";
+    private static final String FIREBASE_ROOT_CHILD_COUNTRY = "countryPhoneCodes";
 
     private RecyclerView countriesRecycerView;
-
+    private ArrayList<AllCountries> countriesArrayList;
+    private Firebase firebaseRoot;
+    private Firebase firebaseLanguagesRef;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +53,7 @@ public class CountriesFragment extends Fragment {
     }
 
     public void populateCountriesRecyclerView(JSONObject objectTable) {
-        ArrayList<AllCountries> countriesArrayList = new ArrayList<>();
+        countriesArrayList = new ArrayList<>();
 
         try {
             JSONArray rows = objectTable.getJSONArray("rows");
@@ -82,6 +87,16 @@ public class CountriesFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public void addCountryCodesToFirebase() {
+        Firebase.setAndroidContext(getContext());
+        firebaseRoot = new Firebase(FIREBASE_ROOT_URL);
+        firebaseLanguagesRef = firebaseRoot.child(FIREBASE_ROOT_CHILD_COUNTRY);
+
+        for (int i = 0; i < countriesArrayList.size(); i++) {
+            firebaseLanguagesRef.child(String.valueOf(i)).setValue(countriesArrayList.get(i));
+            Log.d(TAG_COUNTRIES_FRAGMENT, "setValueToFirebase: name" + countriesArrayList.get(i).getCountryPhoneName());
+        }
     }
 }

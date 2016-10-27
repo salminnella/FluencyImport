@@ -5,31 +5,31 @@ package com.example.fluency.driveimport.models;
  */
 
 public class AllCountries {
-    private String countryName;
-    private String countryCode;
+    private String countryPhoneName;
+    private String countryPhoneCode;
 
     public AllCountries() {
 
     }
 
-    public AllCountries(String countryName, String countryCode) {
-        this.countryName = countryName;
-        this.countryCode = countryCode;
+    public AllCountries(String countryPhoneName, String countryPhoneCode) {
+        this.countryPhoneName = countryPhoneName;
+        this.countryPhoneCode = countryPhoneCode;
     }
 
-    public String getCountryName() {
-        return countryName;
+    public String getCountryPhoneName() {
+        return countryPhoneName;
     }
 
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setCountryPhoneName(String countryPhoneName) {
+        this.countryPhoneName = countryPhoneName;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public String getCountryPhoneCode() {
+        return countryPhoneCode;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCountryPhoneCode(String countryPhoneCode) {
+        this.countryPhoneCode = countryPhoneCode;
     }
 }
