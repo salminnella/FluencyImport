@@ -60,7 +60,7 @@ public class LanguagesFragment extends Fragment {
         String phone;
         int routing;
         int lCode;
-        String speakers;
+        int speakers;
         try {
             JSONArray rows = objectTable.getJSONArray("rows");
 
@@ -91,9 +91,9 @@ public class LanguagesFragment extends Fragment {
                     lCode = columns.getJSONObject(5).getInt("v");
                 }
                 if (columns.get(8).toString().equals("null")) {
-                    speakers = "0";
+                    speakers = 0;
                 } else {
-                    speakers = columns.getJSONObject(8).getString("v");
+                    speakers = columns.getJSONObject(8).getInt("v");
                 }
 
                 //get the countries column

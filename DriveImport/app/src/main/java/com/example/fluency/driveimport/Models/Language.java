@@ -9,7 +9,7 @@ public class Language {
     private String name;
     private String phone;
     private String ISO;
-    private String numSpeakers;
+    private int numSpeakers;
     private int lCode;
     private int routing;
     private ArrayList<LanguageCountry> languageCountry;
@@ -17,7 +17,7 @@ public class Language {
     public Language() {
     }
 
-    public Language(String name, String phone, String ISO, int lCode, int routing, String numSpeakers, String[] countryArray) {
+    public Language(String name, String phone, String ISO, int lCode, int routing, int numSpeakers, String[] countryArray) {
         this.name = name;
         this.phone = phone;
         this.ISO = ISO;
@@ -68,11 +68,11 @@ public class Language {
         this.routing = routing;
     }
 
-    public String getNumSpeakers() {
+    public int getNumSpeakers() {
         return numSpeakers;
     }
 
-    public void setNumSpeakers(String numSpeakers) {
+    public void setNumSpeakers(int numSpeakers) {
         this.numSpeakers = numSpeakers;
     }
 
