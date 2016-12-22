@@ -66,14 +66,14 @@ public class Language {
         this.routing = routing;
     }
 
-    public ArrayList<LanguageCountry> getLanguageCountry() {
+    public ArrayList<com.example.fluency.driveimport.models.LanguageCountry> getLanguageCountry() {
         return languageCountry;
     }
 
     public void setLanguageCountry(String[] countryArray) {
         languageCountry = new ArrayList<>();
         for (String countryName : countryArray) {
-            languageCountry.add(new LanguageCountry(countryName));
+            languageCountry.add(new com.example.fluency.driveimport.models.LanguageCountry(countryName));
         }
     }
 }

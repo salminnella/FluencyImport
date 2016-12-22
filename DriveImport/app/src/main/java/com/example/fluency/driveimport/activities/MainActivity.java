@@ -19,7 +19,6 @@ import com.example.fluency.driveimport.async.AsyncResult;
 import com.example.fluency.driveimport.async.DownloadDocTask;
 import com.example.fluency.driveimport.fragments.CountriesFragment;
 import com.example.fluency.driveimport.fragments.LanguagesFragment;
-import com.example.fluency.driveimport.models.Language;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -29,6 +28,8 @@ import com.google.android.gms.drive.DriveId;
 import com.google.android.gms.drive.OpenFileActivityBuilder;
 
 import org.json.JSONObject;
+
+//import com.example.fluency.driveimport.models.Language;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements
 //
 //    private Firebase firebaseRoot;
 //    private Firebase firebaseLanguagesRef;
-    private Language[] languagesList;
+    private com.example.fluency.driveimport.models.Language[] languagesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
