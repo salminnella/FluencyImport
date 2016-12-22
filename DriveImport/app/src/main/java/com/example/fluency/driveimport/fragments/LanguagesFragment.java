@@ -60,6 +60,7 @@ public class LanguagesFragment extends Fragment {
         String phone;
         int routing;
         int lCode;
+        String speakers;
         try {
             JSONArray rows = objectTable.getJSONArray("rows");
 
@@ -89,10 +90,15 @@ public class LanguagesFragment extends Fragment {
                 } else {
                     lCode = columns.getJSONObject(5).getInt("v");
                 }
+                if (columns.get(8).toString().equals("null")) {
+                    speakers = "0";
+                } else {
+                    speakers = columns.getJSONObject(8).getString("v");
+                }
 
-                //get the countries colum
+                //get the countries column
                 String[] countriesArray;
-                String countriesStr = columns.getJSONObject(8).getString("v");
+                String countriesStr = columns.getJSONObject(9).getString("v");
                 Log.d(TAG_LANGUAGES_FRAGMENT, "processJson: countriesStr = " + countriesStr);
                 countriesArray = countriesStr.split("-");
 
