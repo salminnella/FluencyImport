@@ -103,7 +103,7 @@ public class LanguagesFragment extends Fragment {
                 countriesArray = countriesStr.split("-");
 
 
-                languageArrayList.add(new Language(language,phone,ISO,lCode,routing,countriesArray));
+                languageArrayList.add(new Language(language,phone,ISO,lCode,routing, speakers, countriesArray));
 
             }
 
