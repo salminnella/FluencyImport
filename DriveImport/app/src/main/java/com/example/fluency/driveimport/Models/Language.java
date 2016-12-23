@@ -9,6 +9,7 @@ public class Language {
     private String name;
     private String phone;
     private String ISO;
+    private int numSpeakers;
     private int lCode;
     private int routing;
     private ArrayList<LanguageCountry> languageCountry;
@@ -16,12 +17,13 @@ public class Language {
     public Language() {
     }
 
-    public Language(String name, String phone, String ISO, int lCode, int routing, String[] countryArray) {
+    public Language(String name, String phone, String ISO, int lCode, int routing, int numSpeakers, String[] countryArray) {
         this.name = name;
         this.phone = phone;
         this.ISO = ISO;
         this.lCode = lCode;
         this.routing = routing;
+        this.numSpeakers = numSpeakers;
 
         setLanguageCountry(countryArray);
     }
@@ -66,14 +68,22 @@ public class Language {
         this.routing = routing;
     }
 
-    public ArrayList<LanguageCountry> getLanguageCountry() {
+    public int getNumSpeakers() {
+        return numSpeakers;
+    }
+
+    public void setNumSpeakers(int numSpeakers) {
+        this.numSpeakers = numSpeakers;
+    }
+
+    public ArrayList<com.example.fluency.driveimport.models.LanguageCountry> getLanguageCountry() {
         return languageCountry;
     }
 
     public void setLanguageCountry(String[] countryArray) {
         languageCountry = new ArrayList<>();
         for (String countryName : countryArray) {
-            languageCountry.add(new LanguageCountry(countryName));
+            languageCountry.add(new com.example.fluency.driveimport.models.LanguageCountry(countryName));
         }
     }
 }
